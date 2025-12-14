@@ -1,21 +1,13 @@
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class Push_Gravity_Field : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public Transform player;
+    public XROrigin xrOrigin;
+    public float influenceRange = 5f;
+    public float intensity = 10f;
     Rigidbody playerBody;
-    public float influenceRange;
-    public float intensity;
-    float distanceToPlayer;
-    Vector3 pullForce;
     
-    void Start()
-    {
-        playerBody = player.GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
     void Update()
     {
         ApplyPushForce();
@@ -23,9 +15,21 @@ public class Push_Gravity_Field : MonoBehaviour
 
     void ApplyPushForce()
     {
-        Vector3 direction = player.position - transform.position;
+        Vector3 playerPosition = new Vector3(
+            xrOrigin.Camera.transform.position.x,
+            xrOrigin.transform.position.y,
+            xrOrigin.Camera.transform.position.z
+        );
+
+        Vector3 direction = playerPosition - transform.position;
         float distance = direction.magnitude;
-        if (distance > influenceRange) return;
-        playerBody.AddForce(-direction.normalized * intensity / distance);
+
+        if (distance > influenceRange)
+            return;
+
+        Vector3 displacement =
+            direction.normalized * intensity * Time.deltaTime;
+
+        xrOrigin.transform.position += displacement;
     }
 }

@@ -196,6 +196,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6714593454128162010, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
+--- !u!114 &557844281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557844276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7040353331063647b071cb0be6e1240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Push_Gravity_Field
+  xrOrigin: {fileID: 813958803}
+  influenceRange: 1000
+  intensity: 1
 --- !u!1 &566677540 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 819763391400898728, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
@@ -337,6 +352,17 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3854314634256855432, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
+--- !u!114 &813958803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9059786329452581396, guid: 77e7c27b2c5525e4aa8cc9f99d654486, type: 3}
+  m_PrefabInstance: {fileID: 1373153106}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1328344805 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8549119981536600814, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
@@ -779,6 +805,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3890813426495929620, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
       insertIndex: -1
       addedObject: {fileID: 557844277}
+    - targetCorrespondingSourceObject: {fileID: 3890813426495929620, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557844281}
     - targetCorrespondingSourceObject: {fileID: 6820855703850859311, guid: 602bb66c9b46c45a4b5a0135937de091, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1559394782}
