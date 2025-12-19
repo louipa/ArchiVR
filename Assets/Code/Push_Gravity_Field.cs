@@ -27,8 +27,7 @@ public class Push_Gravity_Field : MonoBehaviour
         if (distance > influenceRange)
             return;
 
-        Vector3 displacement =
-            direction.normalized * intensity * Time.deltaTime;
+        Vector3 displacement = direction.normalized * intensity * Time.deltaTime;
 
         xrOrigin.transform.position += displacement;
     }

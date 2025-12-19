@@ -1,13 +1,17 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Position_Tracker : MonoBehaviour
 {
     [SerializeField] private float recordInterval = 1f; // seconds
 
-    private readonly Queue<Vector3> _lastPositions = new(10000);
+    private static readonly Queue<Vector3> LastPositions = new(10000);
     private float _timer;
-
+    
     private void Update()
     {
         _timer += Time.deltaTime;
@@ -15,7 +19,7 @@ public class Position_Tracker : MonoBehaviour
         if (_timer < recordInterval) return;
         
         _timer = 0f;
-        _lastPositions.Enqueue(transform.position);
+        LastPositions.Enqueue(transform.position);
     }
 
     private void OnApplicationQuit()
@@ -23,16 +27,18 @@ public class Position_Tracker : MonoBehaviour
         PrintLastPositions();
     }
 
-    private void PrintLastPositions()
+    public static void PrintLastPositions()
     {
-        //TODO we will have to store it somewhere at some point
+        //TODO pretty print of graph + interface
         Debug.Log("Last recorded player positions:");
 
         var i = 1;
-        foreach (var pos in _lastPositions)
+        foreach (var pos in LastPositions)
         {
             Debug.Log($"{i}: {pos}");
             i++;
         }
     }
+
+
 }
