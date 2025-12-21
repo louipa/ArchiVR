@@ -9,6 +9,7 @@ using XCharts.Runtime;
 public class GrabEvent : MonoBehaviour
 {
     [SerializeField] private Canvas _uiCanvas;
+    [SerializeField] private LineChart _lineChart;
     
     XRGrabInteractable _grab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,12 +32,8 @@ public class GrabEvent : MonoBehaviour
 
         List<float> speeds = Position_Tracker.GetLastSpeeds();
         
-        LineChart _lineChart = _uiCanvas.GetComponentInChildren<LineChart>(true);
         _lineChart.GetChartComponent<YAxis>().axisLabel.formatter = "{value:F2}";
-
-
         _lineChart.RemoveData();
-
         if (_lineChart.series.Count == 0)
         {
             _lineChart.AddSerie<Line>("Speed");
