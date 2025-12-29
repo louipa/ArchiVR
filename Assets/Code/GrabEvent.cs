@@ -46,7 +46,9 @@ public class GrabEvent : MonoBehaviour
 
         _lineChart.RefreshChart();
         
+        Debug.Log(_uiCanvas.gameObject.activeSelf);
         _uiCanvas.gameObject.SetActive(true);
+        Debug.Log(_uiCanvas.gameObject.activeSelf);
         
     }
 }
