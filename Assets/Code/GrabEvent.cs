@@ -8,8 +8,8 @@ using XCharts.Runtime;
 
 public class GrabEvent : MonoBehaviour
 {
-    [SerializeField] private Canvas _uiCanvas;
-    [SerializeField] private LineChart _lineChart;
+    [SerializeField] private Canvas uiCanvas;
+    [SerializeField] private LineChart lineChart;
     
     XRGrabInteractable _grab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,7 +17,6 @@ public class GrabEvent : MonoBehaviour
     {
         _grab = GetComponent<XRGrabInteractable>();
         _grab.selectEntered.AddListener(OnGrab);
-        Debug.Log("GrabEvent Awake");
     }
    
     
@@ -28,27 +27,21 @@ public class GrabEvent : MonoBehaviour
     
     IEnumerator PlotDashboard()
     {
-        yield return new WaitForSeconds(5f);
-
+        yield return new WaitForSeconds(2f);
         List<float> speeds = Position_Tracker.GetLastSpeeds();
         
-        _lineChart.GetChartComponent<YAxis>().axisLabel.formatter = "{value:F2}";
-        _lineChart.RemoveData();
-        if (_lineChart.series.Count == 0)
+        lineChart.GetChartComponent<YAxis>().axisLabel.formatter = "{value:F2}";
+        lineChart.RemoveData();
+        if (lineChart.series.Count == 0)
         {
-            _lineChart.AddSerie<Line>("Speed");
+            lineChart.AddSerie<Line>("Speed");
         }
 
         for (int i = 0; i < speeds.Count; i++)
         {
-            _lineChart.AddData(0, i, speeds[i]);
+            lineChart.AddData(0, i, speeds[i]);
         }
-
-        _lineChart.RefreshChart();
-        
-        Debug.Log(_uiCanvas.gameObject.activeSelf);
-        _uiCanvas.gameObject.SetActive(true);
-        Debug.Log(_uiCanvas.gameObject.activeSelf);
-        
+        lineChart.RefreshChart();
+        uiCanvas.gameObject.SetActive(true);
     }
 }

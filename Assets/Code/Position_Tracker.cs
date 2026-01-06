@@ -6,7 +6,7 @@ public class Position_Tracker : MonoBehaviour
 {
     [SerializeField] private float recordInterval = 1f; // seconds
     
-    private static readonly Queue<Vector3> LastPositions = new(10000);
+    private static readonly List<Vector3> LastPositions = new(10000);
     private float _timer;
     
     
@@ -17,20 +17,10 @@ public class Position_Tracker : MonoBehaviour
         if (_timer < recordInterval) return;
         
         _timer = 0f;
-        LastPositions.Enqueue(transform.position);
+        LastPositions.Add(transform.position);
     }
 
-    public static void PrintLastPositions()
-    {
-        //TODO pretty print of graph + interface
-        Debug.Log("Last recorded player positions:");
-        var i = 1;
-        foreach (var pos in LastPositions)
-        {
-            Debug.Log($"{i}: {pos}");
-            i++;
-        }
-    }
+
     public static List<float> GetLastSpeeds()
     {
         var speeds = new List<float>();
@@ -38,23 +28,11 @@ public class Position_Tracker : MonoBehaviour
         if (LastPositions.Count < 2)
             return speeds;
 
-        Vector3 previous = Vector3.zero;
-        bool first = true;
-
-        foreach (var current in LastPositions)
+        
+        for (int i = 1; i < LastPositions.Count; i++)
         {
-            if (first)
-            {
-                previous = current;
-                first = false;
-                continue;
-            }
-
-            float distance = Vector3.Distance(previous, current);
-            float speed = distance / 1; // recordInterval = 1
-
+            float speed = Vector3.Distance(LastPositions[i - 1], LastPositions[i]); // recordInterval = 1
             speeds.Add(speed);
-            previous = current;
         }
 
         return speeds;
