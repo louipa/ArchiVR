@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void LobbyButton()
     {
-        sceneLoader.LoadScene("SampleScene");
+        sceneLoader.LoadScene("Room1Scene");
     }
 
     public void BackButton()
