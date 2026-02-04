@@ -58,6 +58,7 @@ namespace Tengio {
                 image.color = color;
                 yield return null;
             }
+            yield return new WaitForSeconds(0.1F);
             color.a = 1F;
             image.color = color;
 

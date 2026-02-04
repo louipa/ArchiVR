@@ -2,6 +2,7 @@ using System;
 using Tengio;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] public SceneLoader sceneLoader;
     [SerializeField] public Camera camera;
+    [SerializeField] public TeleportationAnchor lobbySpawnPoint;
 
     void Start()
     {
@@ -56,12 +58,12 @@ public class PauseMenu : MonoBehaviour
 
     public void LobbyButton()
     {
-        sceneLoader.LoadScene("Room1Scene");
+        ToggleMenu();
+        sceneLoader.LoadScene(lobbySpawnPoint);
     }
 
     public void BackButton()
     {
-        isOpen = false;
-        menuCanvas.SetActive(false);
+        ToggleMenu();
     }
 }
