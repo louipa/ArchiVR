@@ -58,10 +58,10 @@ public class PauseMenu : MonoBehaviour
 
     public void LobbyButton()
     {
-        ToggleMenu();
+        ToggleMenu();    
         sceneLoader.LoadScene(lobbySpawnPoint);
     }
-
+    
     public void BackButton()
     {
         ToggleMenu();
