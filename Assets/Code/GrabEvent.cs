@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Tengio;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -10,6 +11,7 @@ public class GrabEvent : MonoBehaviour
 {
     [SerializeField] private Canvas uiCanvas;
     [SerializeField] private LineChart lineChart;
+    [SerializeField] private TeleportManager teleportManager;
     
     XRGrabInteractable _grab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +24,7 @@ public class GrabEvent : MonoBehaviour
     
     void OnGrab(SelectEnterEventArgs args)
     {
-        StartCoroutine(PlotDashboard());
+        // StartCoroutine(PlotDashboard());
     }
     
     IEnumerator PlotDashboard()
