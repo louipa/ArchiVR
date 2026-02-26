@@ -6,6 +6,7 @@ public class SceneLoadingArea : MonoBehaviour
 {
     [SerializeField] private TeleportationAnchor anchor;
     [SerializeField] private SceneLoader sceneLoader;
+    [SerializeField] private ManualRotationProvider rotationLoader;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -14,5 +15,6 @@ public class SceneLoadingArea : MonoBehaviour
         {
             sceneLoader.LoadScene(anchor);
         }
+        rotationLoader.ForceRotation();
     }
 }
