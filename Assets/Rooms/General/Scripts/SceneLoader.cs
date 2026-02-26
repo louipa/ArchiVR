@@ -12,9 +12,11 @@ namespace Tengio {
 
         [SerializeField] private TeleportationProvider teleportationProvider;
 
-        public void LoadScene(TeleportationAnchor anchor) {
+        public void LoadScene(TeleportationAnchor anchor, Action fadeOutCallback = null, Action middleFadeCallback = null, Action fadeInCallback =  null) {
 
             fadeScreen.FadeOut(() => { 
+                if (fadeOutCallback != null)
+                    fadeOutCallback();
                 teleportationProvider.QueueTeleportRequest(
                     new TeleportRequest
                     {
@@ -22,7 +24,10 @@ namespace Tengio {
                         destinationRotation = anchor.transform.rotation
                     }
                  );
-                 fadeScreen.FadeIn();
+                if  (middleFadeCallback != null)
+                    middleFadeCallback();
+                
+                fadeScreen.FadeIn(fadeInCallback);
             });
         }
     }
