@@ -26,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         {
             Vector3 vHeadPos = camera.transform.position;
             Vector3 vGazeDir = camera.transform.forward;
-            menuCanvas.transform.position = (vHeadPos + vGazeDir * 0.5f) + new Vector3(0.0f, 0.1f, 0.0f);
+            menuCanvas.transform.position = (vHeadPos + vGazeDir * 0.5f) + new Vector3(0.0f, -0.2f, 0.0f);
             Vector3 vRot = camera.transform.eulerAngles; vRot.z = 0;
             menuCanvas.transform.eulerAngles = vRot;
         }
