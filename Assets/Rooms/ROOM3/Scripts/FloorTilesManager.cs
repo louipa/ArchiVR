@@ -52,9 +52,17 @@ public class FloorTilesManager : MonoBehaviour
         if (isTriggered[index]) return;
         isTriggered[index] = true;
         
-        foreach (GameObject tile in tiles)
+        int excludedIndex = Random.Range(0, tiles.Length);
+        
+        for (int i = 0; i < tiles.Length; i++)
         {
+            GameObject tile = tiles[i];
             if (tile == null) continue;
+
+            tile.GetComponent<FloorTilesGravity>().setActive(true);
+
+            if (i == excludedIndex)
+                continue;
 
             float randomHeight = Random.Range(1f, maxHeight);
             Vector3 targetPosition = tile.transform.position + Vector3.up * randomHeight;
